@@ -1,0 +1,96 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гуманитарные аспекты</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f0f0f0, #d9d9d9);
+            overflow-x: hidden;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            animation: fadeIn 1s;
+        }
+        nav {
+            background: #444;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            margin: 20px 0;
+            animation: slideIn 1s;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Гуманитарные аспекты</h1>
+        <p>Краткое описание гуманитарных аспектов операции</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="history.html">История и контекст</a></li>
+            <li><a href="forces.html">Участники и силы</a></li>
+            <li><a href="news.html">Новости и аналитика</a></li>
+            <li><a href="humanitarian.html">Гуманитарные аспекты</a></li>
+            <li><a href="media.html">Медиа</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>Гуманитарная помощь</h2>
+            <p>Краткое описание гуманитарной помощи, оказываемой в ходе операции</p>
+        </section>
+        <section>
+            <h2>Беженцы и перемещенные лица</h2>
+            <p>Краткое описание ситуации с беженцами и перемещенными лицами в ходе операции</p>
+        </section>
+    </main>
+    <footer>
+        <p> 2023 Специальная военная операция. Все права защищены.</p>
+    </footer>
+</body>
+</html>
