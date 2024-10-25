@@ -6,4 +6,4 @@ window.onload = function()
     {
         element.textContent = name;
     }
-}git
+}
