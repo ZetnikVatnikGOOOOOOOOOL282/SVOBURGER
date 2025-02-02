@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вторая Мировая война</title>
+    <link rel="stylesheet" href="style12.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">Военный архив</h1>
+            <nav class="era-nav">
+                <a href="index.html" class="era-btn">Главная</a>
+                <a href="#countries" class="era-btn">Страны</a>
+                <a href="#tech" class="era-btn">Типы техники</a>
+                <a href="#about" class="era-btn">О проекте</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main>
+        <!-- Краткое описание -->
+        <section class="era-section intro-section">
+            <div class="era-content">
+              <h2 class="era-title">Вторая Мировая война (1939-1945)</h2>
+              <div class="era-text summary-box">
+                <p class="summary-lead">Крупнейший вооружённый конфликт в истории человечества</p>
+                <div class="highlight-stats">
+                  <div class="stat-item">
+                    <div class="stat-number">61</div>
+                    <div class="stat-label">государство-участник</div>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-number">70M+</div>
+                    <div class="stat-label">погибших</div>
+                  </div>
+                </div>
+                <ul class="key-facts">
+                  <li>Боевые действия на трёх континентах</li>
+                  <li>Применение ядерного оружия</li>
+                  <li>Коренной перелом в мировой истории</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+        <!-- Страны и техника -->
+        <section id="countries" class="tech-section">
+            <div class="section-content">
+                <!-- Германия -->
+                <div class="country-block">
+                    <h3>Германия</h3>
+                    <div class="tech-categories">
+                        <div class="tech-category">
+                            <h4>Танки</h4>
+                            <p>Panzer IV, Tiger, Panther</p>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Авиация</h4>
+                            <p>Messerschmitt Bf 109, Stuka</p>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Флот</h4>
+                            <p>Линкоры Bismarck, U-Boat</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- СССР -->
+                <div class="country-block">
+                    <h3>СССР</h3>
+                    <div class="tech-categories">
+                        <!-- Аналогичная структура -->
+                    </div>
+                </div>
+
+                <!-- Остальные страны -->
+                <a href="#more" class="more-btn">Показать остальные страны</a>
+            </div>
+        </section>
+
+        <!-- Слайдер классификации -->
+        <section id="tech" class="classification-slider">
+            <h2>Классификация по типу техники</h2>
+            <div class="swiper-container">
+                <!-- Содержимое слайдера -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-nav">
+                <a href="#">О проекте</a>
+                <a href="#">Контакты</a>
+                <a href="#">Политика конфиденциальности</a>
+            </div>
+            <p>© 2023 Военный архив. Все права защищены</p>
+        </div>
+    </footer>
+
+    <!-- Подключение скриптов -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+        delay: 3000,
+    },
+    breakpoints: {
+        320: {
+            slidesPerView: 1
+        },
+        768: {
+            slidesPerView: 2
+        },
+        1024: {
+            slidesPerView: 3
+        }
+    }
+});
+    </script>
+
+</body>
+</html>
