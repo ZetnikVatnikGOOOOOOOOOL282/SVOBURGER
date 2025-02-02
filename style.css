@@ -1143,3 +1143,65 @@ footer {
       font-size: 2.5rem;
     }
   }
+
+  .era-details-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.8rem 2rem;
+    background: #e74c3c;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .era-details-btn::after {
+    content: '→';
+    margin-left: 0.5rem;
+    transition: margin 0.3s ease;
+  }
+  
+  .era-details-btn:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+  }
+  
+  .era-details-btn:hover::after {
+    margin-left: 1rem;
+  }
+  
+  /* Для темных секций */
+  .dark-section .era-details-btn {
+    background: #3498db;
+    border-color: rgba(255,255,255,0.2);
+  }
+  
+  .dark-section .era-details-btn:hover {
+    background: #2980b9;
+  }
+
+  @media (max-width: 768px) {
+    .era-details-btn {
+      position: static;
+      width: 100%;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+  }
+
+  .era-info {
+    position: relative;
+    padding-bottom: 3rem;
+  }
+  
+  .era-details-btn {
+
+    position: absolute;
+    bottom: 50px;
+    left: 40px;
+  }
