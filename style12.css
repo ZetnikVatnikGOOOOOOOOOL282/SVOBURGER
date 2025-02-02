@@ -1,61 +1,26 @@
-/* Стили для секции техники */
-.tech-section {
-    padding: 4rem 2rem;
+/* Основные настройки */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
     background: #f8f9fa;
-}
-
-.country-block {
-    margin-bottom: 3rem;
-    padding: 2rem;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.tech-categories {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 1.5rem;
-}
-
-.tech-category {
-    padding: 1.5rem;
-    background: #f1f3f5;
-    border-radius: 8px;
-}
-
-.more-btn {
-    display: block;
-    width: max-content;
-    margin: 2rem auto 0;
-    padding: 1rem 2rem;
-    background: #3498db;
-    color: white;
-    border-radius: 25px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.classification-slider {
-    padding: 4rem 2rem;
-    background: #2c3e50;
-    color: white;
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-    .tech-categories {
-        grid-template-columns: 1fr;
-    }
-    
-    .country-block {
-        padding: 1rem;
-    }
-}
-
-/* Стили шапки */
-.header {
+    color: #2c3e50;
+    line-height: 1.6;
+    padding-top: 80px;
+    margin: 0; 
+    padding: 0;
+  }
+  
+  /* Шапка */
+  .header {
     background: #2c3e50;
     padding: 1rem 0;
     position: fixed;
@@ -81,7 +46,6 @@
     letter-spacing: 1px;
   }
   
-  /* Стили кнопок навигации */
   .era-nav {
     display: flex;
     gap: 1.5rem;
@@ -104,130 +68,794 @@
     box-shadow: 0 3px 10px rgba(0,0,0,0.2);
   }
   
-  /* Адаптивность */
-  @media (max-width: 768px) {
-    .header-content {
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1rem 20px;
-    }
-    
-    .era-nav {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .era-btn {
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-    }
+  /* Основной контент */
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
   }
   
-  @media (max-width: 480px) {
-    .logo {
-      font-size: 1.5rem;
-    }
-    
-    .era-nav {
-      gap: 0.8rem;
-    }
-  }
-
-  /* Стили для секции */
-.intro-section {
-    padding-top: 100px;
-    background: linear-gradient(45deg, #f8f9fa 0%, #ffffff 100%);
+  /* Секция с описанием войны */
+  .intro-section {
+    padding: 120px 2rem 80px;
+    background: linear-gradient(rgba(248,249,250,0.9), rgba(255,255,255,0.9));
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    margin-bottom: 4rem;
   }
   
   .era-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    color: #2c3e50;
+    font-size: 3.2rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    color: #2c3e50;
   }
   
-  .summary-box {
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+  }
+  
+  .key-fact {
     background: white;
-    padding: 2.5rem;
+    padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+  }
+  
+  .key-fact:hover {
+    transform: translateY(-10px);
+  }
+  
+  /* Секция стран и техники */
+  .tech-section {
+    padding: 6rem 2rem;
+    background: #fff;
+  }
+  
+  .country-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
     margin: 0 auto;
   }
   
-  .summary-lead {
-    font-size: 1.4rem;
-    color: #e74c3c;
-    text-align: center;
-    margin-bottom: 2rem;
-    font-weight: 500;
+  .country-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
   }
   
-  .highlight-stats {
+  .country-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .country-header {
+    padding: 2rem;
+    background: #2c3e50;
+    color: white;
     display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin: 2rem 0;
+    align-items: center;
+    gap: 1.5rem;
   }
   
-  .stat-item {
-    text-align: center;
+  .country-flag {
+    width: 60px;
+    height: 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  
+  .tech-category {
     padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 10px;
-    min-width: 180px;
+    display: flex;
+    gap: 1.5rem;
+    border-bottom: 1px solid #eee;
   }
   
-  .stat-number {
+  .tech-icon {
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
     font-size: 2.5rem;
-    font-weight: 700;
-    color: #2c3e50;
+    min-width: 50px;
+    text-align: center;
+    color: #e74c3c;
   }
   
-  .stat-label {
-    color: #7f8c8d;
-    font-size: 0.9rem;
-  }
-  
-  .key-facts {
+  .tech-list {
     list-style: none;
-    padding-left: 0;
-    display: grid;
-    gap: 1rem;
-    max-width: 600px;
-    margin: 2rem auto 0;
+    padding: 0;
   }
   
-  .key-facts li {
-    padding: 1rem;
-    background: rgba(231,76,60,0.1);
-    border-radius: 8px;
+  .tech-list li {
+    padding: 0.3rem 0;
+    color: #7f8c8d;
     position: relative;
-    padding-left: 2.5rem;
+    padding-left: 1.5rem;
   }
   
-  .key-facts li::before {
+  .tech-list li::before {
     content: '•';
     position: absolute;
-    left: 1rem;
+    left: 0;
     color: #e74c3c;
-    font-size: 1.5rem;
-    line-height: 1;
+    font-size: 1.2rem;
+  }
+  
+  /* Слайдер */
+  .swiper-container {
+    width: 100%;
+    height: 500px;
+    margin: 4rem 0;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Футер */
+  .footer {
+    background: #2c3e50;
+    color: white;
+    padding: 3rem 2rem;
+    margin-top: 4rem;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .footer-nav a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-nav a:hover {
+    color: #3498db;
+  }
+  
+  /* Адаптивность */
+  @media (max-width: 1200px) {
+    .grid-layout {
+      grid-template-columns: 1fr 1fr;
+    }
   }
   
   @media (max-width: 768px) {
-    .era-title {
-      font-size: 2rem;
-    }
-    
-    .highlight-stats {
+    .header-content {
       flex-direction: column;
       gap: 1rem;
-      align-items: center;
     }
-    
-    .key-facts li {
-      padding-left: 2rem;
+  
+    .era-title {
+      font-size: 2.2rem;
+    }
+  
+    .grid-layout {
+      grid-template-columns: 1fr;
+    }
+  
+    .country-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .tech-category {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .footer-content {
+      grid-template-columns: 1fr;
+      text-align: center;
     }
   }
+  
+  @media (max-width: 480px) {
+    .era-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  
+    .swiper-container {
+      height: 300px;
+    }
+  }
+  
+  /* Анимации */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .hero-badge {
+    background: #e74c3c;
+    color: white;
+    padding: 1.5rem 3rem;
+    border-radius: 50px;
+    text-align: center;
+    margin: 2rem auto;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(231,76,60,0.3);
+  }
+  
+  .key-fact {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  
+  .fact-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  .fact-label {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+  }
+
+  .country-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  @media (max-width: 1200px) {
+    .country-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .country-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+  
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  .section-subtitle {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  .key-fact {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  .country-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Исправленный стиль для grid-layout */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    opacity: 1 !important; /* Принудительное отображение */
+    visibility: visible !important;
+  }
+  
+  /* Если используется анимация */
+  .grid-layout.animate-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  /* Гарантированные стили для дочерних элементов */
+  .key-fact {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  }
+  
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .grid-layout {
+      grid-template-columns: 1fr;
+      padding: 0 1rem;
+    }
+  }
+
+  .grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(255,0,0,0.1); /* Временный фон */
+  border: 3px solid red !important; /* Яркая рамка */
+  min-height: 200px;
+  position: relative;
+  z-index: 9999; /* Выводим поверх других элементов */
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Принудительное отключение всех анимаций */
+.grid-layout,
+.grid-layout * {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+.era-section.intro-section {
+    position: relative;
+    padding: 100px 2rem;
+    background: #fff;
+    z-index: 2;
+  }
+  
+  .timeline-decor {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(231,76,60,0.3);
+    transform: translateY(-50%);
+  }
+  
+  .summary-box {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 20px;
+  }
+  
+  .hero-badge {
+    background: #e74c3c;
+    color: white;
+    padding: 1.5rem 3rem;
+    border-radius: 50px;
+    text-align: center;
+    margin: -40px auto 2rem;
+    width: fit-content;
+    box-shadow: 0 10px 30px rgba(231,76,60,0.3);
+  }
+  
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .key-fact {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  }
+  
+  .fact-number {
+    font-size: 3rem;
+    color: #2c3e50;
+    font-weight: 700;
+  }
+  
+  .fact-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .grid-layout {
+      grid-template-columns: 1fr;
+    }
+    
+    .hero-badge {
+      margin-top: 0;
+      width: 90%;
+    }
+  }
+
+  /* Базовые стили секции */
+.era-section.intro-section {
+    position: relative;
+    padding: 100px 20px;
+    background: #ffffff;
+    z-index: 2;
+}
+
+/* Декоративная линия */
+.timeline-decor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 2px;
+    background: rgba(231, 76, 60, 0.3);
+    z-index: -1;
+}
+
+/* Контейнер контента */
+.era-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Заголовок */
+.era-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+}
+
+.year-range {
+    display: block;
+    font-size: 1.4rem;
+    color: #7f8c8d;
+    margin-top: 0.5rem;
+}
+
+/* Основной блок с контентом */
+.summary-box {
+    position: relative;
+    background: #f8f9fa;
+    border-radius: 20px;
+    padding: 60px 20px 30px;
+    margin-top: 40px;
+}
+
+/* Красный бейдж */
+.hero-badge {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e74c3c;
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+    text-align: center;
+}
+
+/* Сетка с фактами */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.key-fact {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.fact-number {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.fact-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .era-title {
+        font-size: 2rem;
+    }
+    
+    .hero-badge {
+        width: 90%;
+        padding: 12px 25px;
+    }
+}
+
+/* Базовые стили секции */
+.ww2-summary {
+    padding: 4rem 1rem;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Заголовок */
+.ww2-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.decorative-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(231, 76, 60, 0.15);
+    z-index: 1;
+}
+
+.ww2-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    background: #fff;
+    padding: 0 2rem;
+}
+
+.ww2-years {
+    display: block;
+    font-size: 1.4rem;
+    color: #e74c3c;
+    margin-top: 0.5rem;
+    font-weight: 400;
+}
+
+/* Баннер */
+.ww2-highlight {
+    position: relative;
+    margin: 2rem auto;
+    max-width: 600px;
+}
+
+.highlight-banner {
+    background: #2c3e50;
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(44, 62, 80, 0.15);
+    transform: rotate(-1deg);
+}
+
+.banner-main {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.banner-sub {
+    display: block;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Сетка фактов */
+.ww2-facts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    padding: 0 1rem;
+}
+
+.fact-card {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.fact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    border-color: #5c5c5c;
+}
+
+.fact-number {
+    font-size: 2.8rem;
+    color: #e74c3c;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.fact-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.fact-description {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .ww2-title {
+        font-size: 2rem;
+    }
+
+    .ww2-facts-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+    .highlight-banner {
+        padding: 1rem;
+        border-radius: 30px;
+    }
+
+    .banner-main {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ww2-title {
+        font-size: 1.8rem;
+        padding: 0 1rem;
+    }
+
+    .ww2-years {
+        font-size: 1.2rem;
+    }
+}
+
+.military-headings {
+    text-align: center;
+    padding: 2rem;
+    background: #f5f5f5;
+    position: relative;
+}
+
+.war-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.text-roughen {
+    display: inline-block;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    text-shadow: 
+        2px 2px 0px rgba(0,0,0,0.1),
+        -1px -1px 0px rgba(255,255,255,0.5);
+    position: relative;
+    z-index: 2;
+}
+
+.year-badge {
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    padding: 0.3rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    margin-left: 1rem;
+    transform: rotate(-3deg);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+}
+
+.conflict-banner {
+    background: repeating-linear-gradient(
+        45deg,
+        #2c3e50,
+        #2c3e50 10px,
+        #34495e 10px,
+        #34495e 20px
+    );
+    color: white;
+    padding: 1rem 2rem;
+    display: inline-block;
+    clip-path: polygon(5% 0, 95% 0, 100% 50%, 95% 100%, 5% 100%, 0 50%);
+}
+
+.banner-text-top {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.banner-text-bottom {
+    display: block;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+  /* Подключение шрифтов */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap');
