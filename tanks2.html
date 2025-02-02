@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог танков</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <button class="nav-button">Главная</button>
+            <button class="nav-button">Самолёты</button>
+            <button class="nav-button">Корабли</button>
+            <button class="nav-button">Орудия</button>
+        </nav>
+    </header>
+
+    <div class="filters-section">
+        <div class="filter-group">
+            <span>Страна: </span>
+            <button class="filter-button" data-filter="country" value="germany">Германия</button>
+            <button class="filter-button" data-filter="country" value="ussr">СССР</button>
+            <button class="filter-button" data-filter="country" value="usa">США</button>
+            <button class="filter-button" data-filter="country" value="britain">Великобритания</button>
+        </div>
+        
+        <div class="filter-group">
+            <span>Тип: </span>
+            <button class="filter-button" data-filter="type" value="heavy">Тяжелый</button>
+            <button class="filter-button" data-filter="type" value="medium">Средний</button>
+            <button class="filter-button" data-filter="type" value="light">Легкий</button>
+            <button class="filter-button" data-filter="type" value="pt-sau">ПТ САУ</button>
+        </div>
+        
+        <button id="reset-filters">Сбросить фильтры</button>
+    </div>
+
+    <div id="auth-container">
+        <button id="admin-login">Вход в админ-панель</button>
+        <button id="admin-logout" style="display: none;">Выход</button>
+    </div>
+
+    <div class="admin-panel">
+        <div class="admin-panel-header">
+            <h3>Админ-панель</h3>
+            <button class="toggle-panel">▼</button>
+        </div>
+        <div class="admin-panel-content">
+            <form id="tank-form">
+                <!-- Первый ряд -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Название</label>
+                        <input type="text" name="name" placeholder="Т-34" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Страна</label>
+                        <select name="country" required>
+                            <option value="">Выберите страну</option>
+                            <option value="ussr">СССР</option>
+                            <option value="germany">Германия</option>
+                            <option value="britain">Великобритания</option>
+                            <option value="usa">США</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Тип</label>
+                        <select name="type" required>
+                            <option value="">Выберите тип</option>
+                            <option value="heavy">Тяжелый</option>
+                            <option value="medium">Средний</option>
+                            <option value="light">Легкий</option>
+                            <option value="pt-sau">ПТ-САУ</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <!-- Второй ряд -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Скорость (км/ч)</label>
+                        <input type="number" name="speed" placeholder="50">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Двигатель</label>
+                        <input type="text" name="engine" placeholder="V-2-34">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Броня (мм)</label>
+                        <input type="text" name="armor" placeholder="45-90">
+                    </div>
+                </div>
+    
+                <!-- Третий ряд -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Вооружение</label>
+                        <input type="text" name="armament" placeholder="76-мм пушка Ф-34">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Годы производства</label>
+                        <input type="text" name="productionYears" placeholder="1940-1945">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Экипаж</label>
+                        <input type="number" name="crew" placeholder="4">
+                    </div>
+                </div>
+    
+                <!-- Четвертый ряд -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Масса (тонн)</label>
+                        <input type="number" name="weight" placeholder="26">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Описание</label>
+                        <textarea name="description" placeholder="Описание техники..."></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Ссылка на изображение</label>
+                        <input type="url" name="image" placeholder="https://example.com/image.jpg">
+                    </div>
+    
+                    <div class="form-group full-width">
+                        <label class="form-label">Ссылка на страницу танка</label>
+                        <input type="url" name="page_url" placeholder="https://example.com/tank-page">
+                    </div>
+                </div>
+    
+                <!-- Кнопка отправки -->
+                <div class="form-row">
+                    <button type="submit" class="full-width">Добавить танк</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="tanks-container" id="tanks-list">
+        <div class="country-section" data-country="germany">
+            <h2 class="country-header">🇩🇪 Германия</h2>
+            <div class="tanks-group"></div>
+        </div>
+        <div class="country-section" data-country="ussr">
+            <h2 class="country-header">🇷🇺 СССР</h2>
+            <div class="tanks-group"></div>
+        </div>
+        <div class="country-section" data-country="usa">
+            <h2 class="country-header">🇺🇸 США</h2>
+            <div class="tanks-group"></div>
+        </div>
+        <div class="country-section" data-country="britain">
+            <h2 class="country-header">🇬🇧 Великобритания</h2>
+            <div class="tanks-group"></div>
+        </div>
+        <div class="country-section" data-country="other">
+            <h2 class="country-header">🌍 Другие страны</h2>
+            <div class="tanks-group"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Каталог военной техники. Все права защищены.</p>
+    </footer>
+
+    <div class="auth-modal" id="auth-modal">
+        <div class="auth-form">
+            <h3>Вход в админ-панель</h3>
+            <input type="email" class="auth-input" id="email" placeholder="Email">
+            <input type="password" class="auth-input" id="password" placeholder="Пароль">
+            <p class="error-message" id="error-message"></p>
+            <button id="signin-button">Войти</button>
+            <button id="close-auth">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        // Конфигурация Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyD76m80D_TEYZ3cQO6qRr7QUv_KlhqCgXo",
+            authDomain: "tanks-24afb.firebaseapp.com",
+            projectId: "tanks-24afb",
+            storageBucket: "tanks-24afb.appspot.com",
+            messagingSenderId: "670820738006",
+            appId: "670820738006"
+        };
+    
+        // Инициализация Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+    
+        // Состояние приложения
+        const state = {
+            currentFilters: { country: null, type: null },
+            tanks: [],
+            unsubscribeTanks: null
+        };
+    
+        // Элементы DOM
+        const elements = {
+            authModal: document.getElementById('auth-modal'),
+            email: document.getElementById('email'),
+            password: document.getElementById('password'),
+            errorMessage: document.getElementById('error-message'),
+            adminPanel: document.querySelector('.admin-panel'),
+            tanksList: document.getElementById('tanks-list'),
+            filterButtons: document.querySelectorAll('.filter-button'),
+            resetFilters: document.getElementById('reset-filters'),
+            tankForm: document.getElementById('tank-form')
+        };
+    
+        // Инициализация приложения
+        const init = () => {
+            setupEventListeners();
+            auth.onAuthStateChanged(handleAuthStateChanged);
+            setupTanksListener();
+        };
+    
+        // Настройка обработчиков событий
+        const setupEventListeners = () => {
+            // Аутентификация
+            document.getElementById('admin-login').addEventListener('click', () => elements.authModal.style.display = 'block');
+            document.getElementById('close-auth').addEventListener('click', () => elements.authModal.style.display = 'none');
+            document.getElementById('signin-button').addEventListener('click', handleSignIn);
+            document.getElementById('admin-logout').addEventListener('click', handleSignOut);
+    
+            // Фильтры
+            elements.filterButtons.forEach(btn => btn.addEventListener('click', () => handleFilterClick(btn)));
+            elements.resetFilters.addEventListener('click', resetFilters);
+    
+            // Админ-панель
+            document.querySelector('.admin-panel-header').addEventListener('click', toggleAdminPanel);
+            elements.tankForm.addEventListener('submit', handleAddTank);
+        };
+    
+        // Работа с аутентификацией
+        const handleSignIn = async (e) => {
+            e.preventDefault();
+            try {
+                await auth.signInWithEmailAndPassword(elements.email.value, elements.password.value);
+                elements.authModal.style.display = 'none';
+                elements.errorMessage.textContent = '';
+            } catch (error) {
+                showError(error);
+            }
+        };
+    
+        const handleSignOut = () => auth.signOut();
+    
+        const handleAuthStateChanged = (user) => {
+            if (user) {
+                elements.adminPanel.style.display = 'block';
+                document.getElementById('admin-login').style.display = 'none';
+                document.getElementById('admin-logout').style.display = 'inline';
+            } else {
+                elements.adminPanel.style.display = 'none';
+                document.getElementById('admin-login').style.display = 'inline';
+                document.getElementById('admin-logout').style.display = 'none';
+            }
+        };
+    
+        // Работа с данными
+        const setupTanksListener = () => {
+            if (state.unsubscribeTanks) state.unsubscribeTanks();
+            
+            state.unsubscribeTanks = db.collection('tanks')
+                .orderBy('createdAt', 'desc')
+                .onSnapshot(snapshot => {
+                    state.tanks = snapshot.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data()
+                    }));
+                    renderTanks();
+                }, error => showError(error));
+        };
+    
+        const renderTanks = () => {
+            const countries = {
+                germany: document.querySelector('[data-country="germany"] .tanks-group'),
+                ussr: document.querySelector('[data-country="ussr"] .tanks-group'),
+                usa: document.querySelector('[data-country="usa"] .tanks-group'),
+                britain: document.querySelector('[data-country="britain"] .tanks-group'),
+                other: document.querySelector('[data-country="other"] .tanks-group')
+            };
+    
+            Object.values(countries).forEach(section => section.innerHTML = '');
+    
+            state.tanks
+                .filter(tank => matchesFilters(tank))
+                .forEach(tank => {
+                    const card = createTankCard(tank);
+                    const country = getCountrySection(tank.country);
+                    countries[country].appendChild(card);
+                });
+        };
+    
+        const createTankCard = (tank) => {
+            const card = document.createElement('div');
+            card.className = 'tank-card';
+            card.innerHTML = `
+                <a href="${tank.page_url || '#'}" class="tank-link" ${tank.page_url ? 'target="_blank"' : ''}>
+                    <div class="tank-card-wrapper">
+                        ${tank.image ? `
+                        <div class="image-container">
+                            <img src="${tank.image}" 
+                                 alt="${tank.name}" 
+                                 loading="lazy"
+                                 onerror="this.style.display='none'">
+                        </div>` : ''}
+                        
+                        <div class="tank-info">
+                            <h3>${tank.name}</h3>
+                            <p class="country-type">${getCountryName(tank.country)} • ${getTypeName(tank.type)}</p>
+                        </div>
+                        
+                        <div class="tank-details">
+                            <div class="detail-grid">
+                                ${tank.speed ? `<div class="detail-item">
+                                    <span>Скорость</span>
+                                    <span>${tank.speed} км/ч</span>
+                                </div>` : ''}
+                                ${tank.engine ? `<div class="detail-item">
+                                    <span>Двигатель</span>
+                                    <span>${tank.engine}</span>
+                                </div>` : ''}
+                                ${tank.armor ? `<div class="detail-item">
+                                    <span>Броня</span>
+                                    <span>${tank.armor} мм</span>
+                                </div>` : ''}
+                                ${tank.armament ? `<div class="detail-item">
+                                    <span>Вооружение</span>
+                                    <span>${tank.armament}</span>
+                                </div>` : ''}
+                                ${tank.productionYears ? `<div class="detail-item">
+                                    <span>Годы</span>
+                                    <span>${tank.productionYears}</span>
+                                </div>` : ''}
+                                ${tank.crew ? `<div class="detail-item">
+                                    <span>Экипаж</span>
+                                    <span>${tank.crew} чел</span>
+                                </div>` : ''}
+                                ${tank.weight ? `<div class="detail-item">
+                                    <span>Масса</span>
+                                    <span>${tank.weight} т</span>
+                                </div>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `;
+            return card;
+        };
+    
+        // Фильтрация
+        const handleFilterClick = (button) => {
+            const filterType = button.dataset.filter;
+            const value = button.value;
+            
+            if (state.currentFilters[filterType] === value) {
+                state.currentFilters[filterType] = null;
+                button.classList.remove('active-filter');
+            } else {
+                state.currentFilters[filterType] = value;
+                button.classList.add('active-filter');
+            }
+            renderTanks();
+        };
+    
+        const resetFilters = () => {
+            state.currentFilters = { country: null, type: null };
+            document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active-filter'));
+            renderTanks();
+        };
+    
+        const matchesFilters = (tank) => {
+            const countryMatch = !state.currentFilters.country || tank.country === state.currentFilters.country;
+            const typeMatch = !state.currentFilters.type || tank.type === state.currentFilters.type;
+            return countryMatch && typeMatch;
+        };
+    
+        // Вспомогательные функции
+        const getCountrySection = (country) => {
+            const validCountries = ['germany', 'ussr', 'usa', 'britain'];
+            return validCountries.includes(country) ? country : 'other';
+        };
+    
+        const getCountryName = (code) => {
+            const countries = {
+                germany: 'Германия',
+                ussr: 'СССР',
+                usa: 'США',
+                britain: 'Великобритания'
+            };
+            return countries[code] || 'Другая страна';
+        };
+    
+        const getTypeName = (code) => {
+            const types = {
+                heavy: 'Тяжелый',
+                medium: 'Средний',
+                light: 'Легкий',
+                'pt-sau': 'ПТ САУ'
+            };
+            return types[code] || 'Неизвестный тип';
+        };
+    
+        // Админ-панель
+        const toggleAdminPanel = () => {
+            const panel = document.querySelector('.admin-panel');
+            panel.classList.toggle('collapsed');
+            localStorage.setItem('adminPanelCollapsed', panel.classList.contains('collapsed'));
+        };
+    
+        const handleAddTank = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = {
+            name: form.elements.name.value,
+            country: form.elements.country.value,
+            type: form.elements.type.value,
+            description: form.elements.description.value,
+            image: form.elements.image.value,
+            page_url: form.elements.page_url.value,
+            speed: form.elements.speed.value,
+            engine: form.elements.engine.value,
+            armor: form.elements.armor.value,
+            armament: form.elements.armament.value,
+            productionYears: form.elements.productionYears.value,
+            crew: form.elements.crew.value,
+            weight: form.elements.weight.value,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+
+        try {
+            await db.collection('tanks').add(formData);
+            form.reset();
+        } catch (error) {
+            showError(error);
+        }
+};
+    
+        // Обработка ошибок
+        const showError = (error) => {
+            console.error('Ошибка:', error);
+            elements.errorMessage.textContent = getErrorMessage(error.code);
+        };
+    
+        const getErrorMessage = (code) => {
+            const messages = {
+                'auth/invalid-email': 'Неверный формат email',
+                'auth/user-disabled': 'Пользователь заблокирован',
+                'auth/user-not-found': 'Пользователь не найден',
+                'auth/wrong-password': 'Неверный пароль',
+                'permission-denied': 'Недостаточно прав'
+            };
+            return messages[code] || 'Произошла ошибка';
+        };
+    
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            const isCollapsed = localStorage.getItem('adminPanelCollapsed') === 'true';
+            if(isCollapsed) document.querySelector('.admin-panel').classList.add('collapsed');
+            init();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,945 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: linear-gradient(135deg, #0d47a1 0%, #1a237e 100%);
+    padding: 2rem 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+}
+
+.nav-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.filters-section {
+    margin: 2rem auto;
+    padding: 0 1rem;
+    max-width: 1200px;
+}
+
+.filter-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.filter-group span {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+.filter-button {
+    background: #f8f9fa;
+    color: #2c3e50;
+    border: 2px solid #e0e0e0;
+    padding: 8px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.filter-button:hover {
+    background: #e9ecef;
+    border-color: #ced4da;
+    transform: translateY(-2px);
+}
+
+.filter-button.active-filter {
+    background: #0d47a1;
+    color: white;
+    border-color: #0d47a1;
+    box-shadow: 0 4px 15px rgba(13, 71, 161, 0.3);
+}
+
+#reset-filters {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+#reset-filters:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+.toggle-panel {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.admin-panel-content {
+    max-height: 1000px;
+    opacity: 1;
+    transition: all 0.3s ease;
+    padding: 1rem;
+}
+
+.admin-panel.collapsed .admin-panel-content {
+    max-height: 0;
+    opacity: 0;
+    padding: 0 1rem;
+}
+
+.admin-panel.collapsed .toggle-panel {
+    transform: rotate(180deg);
+}
+
+.tanks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.country-section {
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.country-header {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #0d47a1;
+    font-size: 1.5rem;
+}
+
+.tanks-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.tank-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.tank-card:hover {
+    transform: translateY(-5px);
+}
+
+.tank-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.auth-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 400px;
+    width: 90%;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.auth-input {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    min-height: 1.2rem;
+}
+
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .nav-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .tanks-group {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-panel {
+        margin: 1rem;
+        padding: 1rem;
+    }
+}
+
+.tanks-container {
+    display: block !important;
+}
+
+.tank-card {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+.country-section {
+    display: block !important;
+}
+
+    /* Стили для кнопок Вход/Выход */
+    #admin-login, #admin-logout {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    #admin-login {
+        background: #4CAF50;
+        color: white;
+        box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+    }
+
+    #admin-login:hover {
+        background: #45a049;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    }
+
+    #admin-logout {
+        background: #f44336;
+        color: white;
+        box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+    }
+
+    #admin-logout:hover {
+        background: #d32f2f;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+    }
+
+    /* Модальное окно авторизации */
+    .auth-modal {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 2rem;
+        width: 90%;
+        max-width: 400px;
+        animation: modalSlideIn 0.3s ease-out;
+    }
+
+    @keyframes modalSlideIn {
+        from {
+            transform: translate(-50%, -60%);
+            opacity: 0;
+        }
+        to {
+            transform: translate(-50%, -50%);
+            opacity: 1;
+        }
+    }
+
+    .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .auth-form h3 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .auth-input {
+        padding: 12px 20px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .auth-input:focus {
+        outline: none;
+        border-color: #0d47a1;
+        box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.1);
+    }
+
+    #signin-button, #close-auth {
+        padding: 14px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    #signin-button {
+        background: #0d47a1;
+        color: white;
+        margin-top: 1rem;
+    }
+
+    #signin-button:hover {
+        background: #1a237e;
+        transform: translateY(-2px);
+    }
+
+    #close-auth {
+        background: #e0e0e0;
+        color: #2c3e50;
+        margin-top: 0.5rem;
+    }
+
+    #close-auth:hover {
+        background: #bdbdbd;
+        transform: translateY(-2px);
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        #admin-login, #admin-logout {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        .auth-modal {
+            padding: 1.5rem;
+        }
+
+        .auth-input {
+            padding: 10px 16px;
+        }
+    }
+    /* Основные стили админ-панели */
+    .admin-panel {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        margin: 2rem auto;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Заголовок админ-панели */
+    .admin-panel-header {
+        background: linear-gradient(135deg, #0d47a1 0%, #1a237e 100%);
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .admin-panel-header h3 {
+        color: white;
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    /* Меню админ-панели */
+    .admin-menu {
+        list-style: none;
+        padding: 1rem 0;
+        margin: 0;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .admin-menu-item {
+        position: relative;
+        margin: 0.5rem 1rem;
+    }
+
+    .admin-menu-link {
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+        color: #2c3e50;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .admin-menu-link:hover {
+        background: #f8f9fa;
+        transform: translateX(5px);
+    }
+
+    .admin-menu-link.active {
+        background: #0d47a11a;
+        color: #0d47a1;
+    }
+
+    .admin-menu-link i {
+        width: 25px;
+        margin-right: 12px;
+        font-size: 1.1rem;
+    }
+
+    /* Контент админ-панели */
+    .admin-content {
+        padding: 2rem;
+        background: #fafafa;
+    }
+
+    /* Иконки меню */
+    .admin-menu-link::before {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background: #0d47a1;
+        border-radius: 50%;
+        margin-right: 15px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .admin-menu-link:hover::before {
+        opacity: 1;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .admin-panel {
+            margin: 1rem;
+            border-radius: 8px;
+        }
+
+        .admin-menu-link {
+            padding: 10px 15px;
+            font-size: 0.9rem;
+        }
+
+        .admin-content {
+            padding: 1.5rem;
+        }
+    }
+
+        /* Общие стили формы */
+        #tank-form {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    
+        /* Стили для заголовков полей */
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+    
+        /* Стилизация текстовых полей и селектов */
+        #tank-form input,
+        #tank-form select,
+        #tank-form textarea {
+            width: 100%;
+            padding: 12px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+    
+        /* Стили для фокуса */
+        #tank-form input:focus,
+        #tank-form select:focus,
+        #tank-form textarea:focus {
+            outline: none;
+            border-color: #0d47a1;
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.1);
+        }
+    
+        /* Специфичные стили для текстовой области */
+        #tank-form textarea {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+    
+        /* Стилизация выпадающего списка */
+        #tank-form select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+    
+        /* Стилизация кнопки отправки */
+        #tank-form button[type="submit"] {
+            background: #0d47a1;
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+    
+        #tank-form button[type="submit"]:hover {
+            background: #1a237e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(13, 71, 161, 0.3);
+        }
+    
+        /* Иконка для кнопки */
+        #tank-form button[type="submit"]::after {
+            content: '+';
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+    
+        /* Плейсхолдеры */
+        #tank-form input::placeholder,
+        #tank-form textarea::placeholder {
+            color: #90a4ae;
+            opacity: 1;
+        }
+    
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            #tank-form {
+                padding: 0 1rem;
+            }
+    
+            #tank-form input,
+            #tank-form select,
+            #tank-form textarea {
+                padding: 10px 14px;
+                font-size: 0.95rem;
+            }
+    
+            #tank-form button[type="submit"] {
+                padding: 14px 24px;
+                font-size: 1rem;
+            }
+        }
+            /* Расширение админ-панели */
+    .admin-panel {
+        max-width: 1000px;
+        width: 90%;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 0;
+    }
+
+    /* Стили для карточек с дополнительной информацией */
+    .tank-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .tank-card:hover .tank-details {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .tank-details {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.85);
+        color: white;
+        padding: 1.5rem;
+        transform: translateY(100%);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+    }
+
+    .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .detail-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .detail-item span:first-child {
+        color: #a0a0a0;
+        font-size: 0.8em;
+        margin-bottom: 0.3rem;
+    }
+
+    @media (max-width: 768px) {
+        .tank-details {
+            position: static;
+            transform: none;
+            opacity: 1;
+            background: #f8f9fa;
+            color: #333;
+            padding: 1rem;
+        }
+        
+        .tank-card:hover .tank-details {
+            transform: none;
+        }
+    }
+        /* Обновленные стили для формы */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+    
+        /* Полноширинные элементы */
+        .full-width {
+            grid-column: 1 / -1;
+        }
+    
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .form-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+        /* Улучшенные стили полей */
+        .form-group {
+            position: relative;
+        }
+    
+        .form-group input,
+        .form-group select {
+            width: 100%;
+        }
+
+            /* 4 колонки в списке танков */
+    .tanks-group {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+    }
+
+    @media (max-width: 1200px) {
+        .tanks-group {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width: 900px) {
+        .tanks-group {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .tanks-group {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Стили для всплывающего окна */
+    .tank-card {
+        position: static;
+        overflow: visible;
+    }
+
+    .tank-card-wrapper {
+        position: relative;
+        height: 100%;
+    }
+
+    .tank-card:hover .tank-details {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* Стиль для ссылки */
+    .tank-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        height: 100%;
+    }
+
+    .tank-link:hover {
+        text-decoration: none;
+    }
+
+
+    .detail-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #0d47a1;
+        border-radius: 3px 0 0 3px;
+    }
+
+    /* Анимация для иконки ссылки */
+    .tank-link::after {
+        content: '↗';
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        opacity: 0;
+        color: #0d47a1;
+        font-weight: 700;
+        transition: opacity 0.3s ease;
+    }
+
+    .tank-card:hover .tank-link::after {
+        opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+        .tank-details {
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            margin-top: 1rem;
+            background: #f8fafc;
+            color: #0f172a;
+            box-shadow: none;
+            border: 1px solid #e2e8f0;
+        }
+
+        .detail-item {
+            background: #f1f5f9;
+        }
+
+        .detail-item::before {
+            background: #bae6fd;
+        }
+
+        .detail-item span:first-child {
+            color: #64748b;
+        }
+
+        .detail-item span:last-child {
+            color: #0f172a;
+        }
+
+        .tank-link::after {
+            display: none;
+        }
+    }
+
+    .tank-details {
+        position: absolute;
+        bottom: calc(100% + 20px);
+        width: 300px;
+        left: -40px;
+        right: 0;
+        background: #0d47a1;
+        color: white;
+        padding: 1.2rem;
+        border-radius: 8px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        transform: translateY(10px);
+    }
+
+    .tank-card:hover .tank-details {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* Стрелка внизу окна */
+    .tank-details::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -10px;
+        border-width: 10px;
+        border-style: solid;
+        border-color: #0d47a1 transparent transparent transparent;
+    }
+
+    /* Сетка характеристик */
+    .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+    }
+
+    .detail-item span:first-child {
+        font-weight: 500;
+        margin-right: 1rem;
+        color: #bbdefb;
+    }
+
+    .detail-item span:last-child {
+        font-weight: 600;
+        color: white;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .tank-details {
+            display: none;
+        }
+    }
+
+    .tank-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px 8px 0 0;
+        transition: transform 0.3s ease;
+    }
+    
+    .tank-card:hover img {
+        transform: scale(1.03);
+    }
+    
+    .tank-info {
+        padding: 1rem;
+        background: white;
+        border-radius: 0 0 8px 8px;
+    }
+
+    
+    .tank-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Изображение полностью вписывается в контейнер */
+        padding: 10px;
+        box-sizing: border-box;
+    }
+

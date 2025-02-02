@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все страны</title>
+    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        
+        .country-description {
+            display: block;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            padding: 0;
+            transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+            background-color: var(--light-gray);
+            margin-top: 10px;
+            border: 1px solid var(--accent-color);
+            border-radius: 8px; 
+        }
+
+        .country-description.visible {
+            max-height: 300px; 
+            opacity: 1;
+            padding: 15px; 
+        }
+
+        .country-description p {
+            margin: 10px 0;
+            color: var(--text-color);
+        }
+
+        .country-description .more-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .country-description .more-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .country-item {
+            cursor: pointer;
+        }
+
+        .country-item:hover {
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Все страны </h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li> 
+                <li><a href="planes.html">Самолёты</a></li> 
+                <li><a href="fleet.html">Корабли</a></li>  
+                <li><a href="artillery.html">Орудия</a></li>  
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="country-list-section">
+            <h2>Крупнейшие державы Второй мировой войны</h2>
+            <div class="country-grid">
+                <div class="country-item" data-country="germany">
+                    <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\img\flags\reich.png" alt="Германия" class="country-flag">
+                    <h3>Германия</h3>
+                </div>
+                <div class="country-description" id="germany-description">
+                    <p>Германия была одной из главных стран-участниц Второй мировой войны. Под руководством Адольфа Гитлера, страна стала центром нацистского режима, который инициировал войну и был ответственен за многочисленные преступления против человечества.</p>
+                    <a href="germany.html" class="more-btn">Подробнее</a>
+                </div>
+
+                <div class="country-item" data-country="ussr">
+                    <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\img\flags\sov.jpg" alt="СССР" class="country-flag">
+                    <h3>СССР</h3>
+                </div>
+                <div class="country-description" id="ussr-description">
+                    <p>СССР сыграл ключевую роль в разгроме нацистской Германии. Советский Союз понес огромные потери в людях и ресурсах, но именно он внес решающий вклад в победу над Третьим рейхом.</p>
+                    <a href="ussr.html" class="more-btn">Подробнее</a>
+                </div>
+
+                <div class="country-item" data-country="usa">
+                    <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\img\flags\usa.png" alt="США" class="country-flag">
+                    <h3>США</h3>
+                </div>
+                <div class="country-description" id="usa-description">
+                    <p>США вступили во Вторую мировую войну после нападения на Пёрл-Харбор в 1941 году. Американские войска сыграли важную роль в освобождении Европы и победе над Японией.</p>
+                    <a href="usa.html" class="more-btn">Подробнее</a>
+                </div>
+
+                <div class="country-item" data-country="uk">
+                    <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\img\flags\uk.png" alt="Великобритания" class="country-flag">
+                    <h3>Великобритания</h3>
+                </div>
+                <div class="country-description" id="uk-description">
+                    <p>Великобритания была одной из первых стран, вступивших в войну против нацистской Германии. Важнейшие сражения, такие как битва за Британию, сыграли ключевую роль в исходе войны.</p>
+                    <a href="uk.html" class="more-btn">Подробнее</a>
+                </div>
+            </div>
+        </section>
+        <section class="country-list-section">
+            <h2>Другие страны-участники Второй мировой войны</h2>
+            <div class="country-grid">
+                <a href="france.html" class="country-item">
+                    <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\img\flags\fra.png" alt="Франция" class="country-flag">
+                    <h3>Франция</h3>
+                </a>
+                <a href="italy.html" class="country-item">
+                    <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\img\flags\ita.png" alt="Италия" class="country-flag">
+                    <h3>Италия</h3>
+                </a>
+                <a href="japan.html" class="country-item">
+                    <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\img\flags\jap.png" alt="Япония" class="country-flag">
+                    <h3>Япония</h3>
+                </a>
+                <a href="canada.html" class="country-item">
+                    <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\img\flags\can.png" alt="Канада" class="country-flag">
+                    <h3>Канада</h3>
+                </a>
+                <a href="china.html" class="country-item">
+                    <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\img\flags\chi.png" alt="Китай" class="country-flag">
+                    <h3>Китай</h3>
+                </a>
+                <a href="australia.html" class="country-item">
+                    <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\img\flags\aus.png" alt="Австралия" class="country-flag">
+                    <h3>Австралия</h3>
+                </a>
+                <a href="poland.html" class="country-item">
+                    <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\img\flags\pol.png" alt="Польша" class="country-flag">
+                    <h3>Польша</h3>
+                </a>
+                <a href="finland.html" class="country-item">
+                    <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\img\flags\fin.svg" alt="Финляндия" class="country-flag">
+                    <h3>Финляндия</h3>
+                </a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Военная техника. Все права защищены.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const countryItems = document.querySelectorAll(".country-item");
+            countryItems.forEach(item => {
+                item.addEventListener("click", function() {
+                    const country = this.getAttribute("data-country");
+                    const description = document.getElementById(`${country}-description`);
+                    
+                    if (description.classList.contains("visible")) {
+                        description.classList.remove("visible");
+                    } else {
+                        document.querySelectorAll(".country-description").forEach(desc => {
+                            desc.classList.remove("visible");
+                        });
+                        description.classList.add("visible");
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

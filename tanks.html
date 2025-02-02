@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Танки Второй мировой войны</title>
+    <link rel="stylesheet" href="styles1.css">
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+</head>
+<body>
+    <div id="authBox">
+        <input type="email" id="email" placeholder="✉️ Админ-email">
+        <input type="password" id="password" placeholder="🔒 Пароль">
+        <button id="loginBtn">Войти</button>
+        <button id="logoutBtn">Выйти</button>
+    </div>
+    <header>
+        <h1>Танки Второй мировой войны</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="planes.html">Самолёты</a></li>
+                <li><a href="ships.html">Корабли</a></li>
+                <li><a href="artillery.html">Орудия</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="filter-buttons">
+          <button data-filter-type="country" data-filter="all" class="active">Все</button>
+          <button data-filter-type="country" data-filter="ussr">СССР</button>
+          <button data-filter-type="country" data-filter="germany">Германия</button>
+          <button data-filter-type="country" data-filter="usa">США</button>
+          <button data-filter-type="type" data-filter="heavy">Тяжелые</button>
+          <button data-filter-type="type" data-filter="medium">Средние</button>
+          <button data-filter-type="type" data-filter="light">Легкие</button>
+          <button id="resetFilters">Сбросить фильтры</button>
+          <button class="filter-btn active" data-country="all">Все</button>
+          <button class="filter-btn" data-country="ussr">СССР</button>
+          <button class="filter-btn" data-country="germany">Германия</button>
+          <button class="filter-btn" data-country="usa">США</button>
+          <button class="filter-btn" data-country="britain">Великобритания</button>
+          
+      </div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Поиск танков...">
+            <button onclick="searchTanks()">Найти</button>
+        </div>
+
+        <section class="tanks-grid">
+            <a href="tanks/is2.html" class="tank-item ussr heavy">
+                <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/img/sov/is2.jpg" alt="ИС-2">
+                <h3>ИС-2</h3>
+                <p>Советский тяжёлый танк периода ВОВ</p>
+            </a>
+            <a href="tanks/is3.html" class="tank-item ussr heavy">
+                <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/img/sov/is3.jpg" alt="ИС-3">
+                <h3>ИС-3</h3>
+                <p>Советский тяжёлый танк</p>
+            </a>
+            <a href="tanks/tiger.html" class="tank-item ussr heavy">
+                <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/img/ger/tiger1.jpg" alt="Tiger I">
+                <h3>Tiger I</h3>
+                <p>Немецкий тяжёлый танк</p>
+            </a>
+            <a href="tanks/panther.html" class="tank-item ussr medium">
+                <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/img/ger/panther.jpg" alt="Panther">
+                <h3>Panther</h3>
+                <p>Немецкий средний танк</p>
+            </a>
+        </section>
+
+        <div id="adminPanel">
+            <div class="admin-header">
+                <h3>Админ-панель</h3>
+                <button class="toggle-panel">
+                    <svg class="toggle-icon" width="16" height="16" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="tankForm" class="admin-form" style="display: block;">
+                
+                <div class="form-group">
+                    <label for="title">Название танка</label>
+                    <input type="text" id="title" name="title" required placeholder="Т-34">
+                </div>
+            
+                <div class="form-group">
+                    <label for="country">Страна</label>
+                    <select id="country" name="country" required>
+                        <option value="ussr">СССР</option>
+                        <option value="germany">Германия</option>
+                        <option value="usa">США</option>
+                        <option value="britain">Великобритания</option>
+                    </select>
+                </div>
+            
+                <div class="form-group">
+                    <label for="type">Тип танка</label>
+                    <select id="type" name="type" required>
+                        <option value="light">Лёгкий</option>
+                        <option value="medium">Средний</option>
+                        <option value="heavy">Тяжёлый</option>
+                        <option value="pt">ПТ-САУ</option>
+                    </select>
+                </div>
+            
+                <div class="form-group">
+                    <label for="image">URL изображения</label>
+                    <input type="url" id="image" name="image" required placeholder="https://example.com/tank.jpg">
+                </div>
+            
+                <div class="form-group">
+                    <label for="link">Ссылка на страницу</label>
+                    <input type="url" id="link" name="link" required placeholder="/tanks/t34.html">
+                </div>
+            
+                <div class="form-group">
+                    <label for="description">Описание</label>
+                    <textarea id="description" name="description" rows="3" required></textarea>
+                </div>
+            
+                <!-- Спецификации -->
+                <div class="specs-grid">
+                    <div class="form-group">
+                        <label for="years">Годы производства</label>
+                        <input type="text" id="years" name="years" required placeholder="1940-1958">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="weight">Масса (тонны)</label>
+                        <input type="number" id="weight" name="weight" step="0.1" required placeholder="26.5">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="crew">Экипаж (чел.)</label>
+                        <input type="number" id="crew" name="crew" required placeholder="4">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="armament">Вооружение</label>
+                        <input type="text" id="armament" name="armament" required placeholder="76-мм пушка Ф-34">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="armor">Броня (мм)</label>
+                        <input type="text" id="armor" name="armor" required placeholder="45-60">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="engine">Двигатель</label>
+                        <input type="text" id="engine" name="engine" required placeholder="В-2-34, 500 л.с.">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="speed">Скорость (км/ч)</label>
+                        <input type="number" id="speed" name="speed" required placeholder="54">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="range">Запас хода (км)</label>
+                        <input type="number" id="range" name="range" placeholder="300">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="suspension">Тип подвески</label>
+                        <input type="text" id="suspension" name="suspension" placeholder="Пружинная">
+                    </div>
+                </div>
+            
+                <button type="submit" class="submit-btn">Добавить танк</button>
+
+            </form>
+        </div>
+
+        <section class="tanks-list" id="tanksContainer">
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Танки Второй мировой войны. Все права защищены.</p>
+    </footer>
+
+    <script>
+        document.getElementById('toggleAdminPanel').addEventListener('click', () => {
+        const panel = document.getElementById('adminPanel');
+        panel.classList.toggle('collapsed');
+        });
+    </script>
+
+    <script src="script1.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
