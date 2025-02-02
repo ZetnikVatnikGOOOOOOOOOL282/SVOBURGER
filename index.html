@@ -1,169 +1,291 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Энциклопедия войны</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>История военной техники</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Энциклопедия войны</h1>
-      <p>Классификация военной техники и вооружения стран Второй мировой войны</p>
-      <nav>
-        <ul>
-          <li><a href="#home">Главная</a></li>
-          <li><a href="#countries">Страны</a></li>
-          <li><a href="#types">Типы техники</a></li>
-          <li><a href="#about">О проекте</a></li>
-        </ul>
-      </nav>
-      <input type="text" id="search-input" placeholder="Поиск по технике, странам или категориям...">
+    <!-- Шапка -->
+    <header class="header">
+        <div class="header-content">
+          <h1 class="logo">вооружение стран</h1>
+          <nav class="era-nav">
+            <a href="#pre-ww1" class="era-btn">До Первой Мировой</a>
+            <a href="#ww1" class="era-btn">Первая Мировая</a>
+            <a href="#ww2" class="era-btn">Вторая Мировая</a>
+            <a href="#modern" class="era-btn">Современность</a>
+          </nav>
+        </div>
+      </header>
+
+    <!-- Основной контент -->
+    <main>
+<!-- Секция "О нас" -->
+<section class="about-mission">
+    <div class="mission-container">
+      <h2 class="mission-title">Наши цели</h2>
+      
+      <div class="mission-grid">
+        <div class="mission-card fade-in">
+          <div class="mission-icon">📸</div>
+          <h3>Сохранение памяти</h3>
+          <p>Оцифровка и реставрация исторических фотоматериалов</p>
+        </div>
+  
+        <div class="mission-card fade-in">
+          <div class="mission-icon">🌐</div>
+          <h3>Доступность</h3>
+          <p>Бесплатный онлайн-доступ к архивным материалам</p>
+        </div>
+  
+        <div class="mission-card fade-in">
+          <div class="mission-icon">🎓</div>
+          <h3>Образование</h3>
+          <p>Интерактивные материалы для студентов и исследователей</p>
+        </div>
+  
+        <div class="mission-card fade-in">
+          <div class="mission-icon">🕰️</div>
+          <h3>Хронология</h3>
+          <p>Визуализация исторических событий через фото</p>
+        </div>
+      </div>
     </div>
-  </header>
-
-  <main>
-    <section id="home">
-      <h2>Добро пожаловать</h2>
-      <p>Этот сайт посвящен изучению военной техники и вооружения времен Второй мировой войны. Здесь вы найдете информацию о танках, самолетах, кораблях и многом другом.</p>
-    </section>
-
-    <section id="countries">
-      <h2>Классификация по странам</h2>
-      <div class="countries-grid">
-        <div class="country">
-          <h3>Германия</h3>
-          <div class="tech-buttons">
-            <a href="germany-tanks.html" class="tech-button">
-              <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/tanks-ger.jpg" alt="Танки">
-              <span>Наземная техника</span>
-            </a>
-            <a href="germany-planes.html" class="tech-button">
-              <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/planes-ger.jpg" alt="Авиация">
-              <span>Авиация</span>
-            </a>
-            <a href="germany-fleet.html" class="tech-button">
-              <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/fleet-ger.jpg" alt="Флот">
-              <span>Флот</span>
-            </a>
-          </div>
+  </section>
+  
+  <!-- Новые секции со смайлами -->
+<!--
+  <section class="features-section">
+    <div class="features-container">
+      <div class="features-column">
+        <div class="feature-card">
+          <div class="feature-icon">🕰️</div>
+          <h3>Хронология</h3>
+          <p>От древности до современности</p>
         </div>
-    
-        <div class="country">
-          <h3>СССР</h3>
-          <div class="tech-buttons">
-            <a href="ussr-tanks.html" class="tech-button">
-              <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/tanks-sov.jpg" alt="Танки">
-              <span>Наземная техника</span>
-            </a>
-            <a href="ussr-planes.html" class="tech-button">
-              <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/planes-sov.jpg" alt="Авиация">
-              <span>Авиация</span>
-            </a>
-            <a href="ussr-fleet.html" class="tech-button">
-              <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/fleet-sov.jpg" alt="Флот">
-              <span>Флот</span>
-            </a>
-          </div>
-        </div>
-    
-        <div class="country">
-          <h3>США</h3>
-          <div class="tech-buttons">
-            <a href="usa-tanks.html" class="tech-button">
-              <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/tanks-usa.jpg" alt="Танки">
-              <span>Наземная техника</span>
-            </a>
-            <a href="usa-planes.html" class="tech-button">
-              <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/planes-usa.jpg" alt="Авиация">
-              <span>Авиация</span>
-            </a>
-            <a href="usa-fleet.html" class="tech-button">
-              <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/fleet-usa.jpg" alt="Флот">
-              <span>Флот</span>
-            </a>
-          </div>
-        </div>
-    
-        <div class="country">
-          <h3>Великобритания</h3>
-          <div class="tech-buttons">
-            <a href="uk-tanks.html" class="tech-button">
-              <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/tanks-uk.jpg" alt="Танки">
-              <span>Наземная техника</span>
-            </a>
-            <a href="uk-planes.html" class="tech-button">
-              <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/planes-uk.jpg" alt="Авиация">
-              <span>Авиация</span>
-            </a>
-            <a href="uk-fleet.html" class="tech-button">
-              <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/fleet-uk.jpg" alt="Флот">
-              <span>Флот</span>
-            </a>
-          </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">👀</div>
+          <h3>Фильтрация</h3>
+          <p>Удобная и гибкая фильтрация</p>
         </div>
       </div>
-    
-      <div class="all-countries-button">
-        <a href="all-countries.html" class="all-countries-link">остальные</a>
-      </div>
-    </section>
-
-    <section id="types">
-      <h2>Классификация по типу техники</h2>
-      <div class="slider-container">
-        <button class="slider-btn prev-btn">‹</button>
-        <div class="slider-wrapper">
-          <div class="slider">
-
-            <div class="slider-item">
-              <a href="tanks2.html">
-                <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)\tank.png" alt="Танки">
-                <h3>Танки</h3>
-                <p>Описание танков Второй мировой войны.</p>
-              </a>
-            </div>
-    
-            <div class="slider-item">
-              <a href="planes.html">
-                <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/plane.png" alt="Самолеты">
-                <h3>Самолеты</h3>
-                <p>Описание самолетов Второй мировой войны.</p>
-              </a>
-            </div>
-    
-            <div class="slider-item">
-              <a href="ships.html">
-                <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/sheep.png" alt="Корабли">
-                <h3>Корабли</h3>
-                <p>Описание кораблей Второй мировой войны.</p>
-              </a>
-            </div>
-    
-            <div class="slider-item">
-              <a href="artillery.html">
-                <img src="d:\WinUsers\ASRock\Desktop\Новая папка (3)/gun1.png" alt="Орудия">
-                <h3>Орудия</h3>
-                <p>Описание артиллерийских орудий Второй мировой войны.</p>
-              </a>
-            </div>
-          </div>
+  
+      <div class="features-column">
+        <div class="feature-card">
+          <div class="feature-icon">🆚</div>
+          <h3>Сравнение</h3>
+          <p>Доступность и простота сравнения</p>
         </div>
-        <button class="slider-btn next-btn">›</button>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📖</div>
+          <h3>Источники</h3>
+          <p>Достоверные источники информации</p>
+        </div>
       </div>
-    </section>
+    </div>
+  </section> -->
 
-    <section id="about">
-      <h2>О проекте</h2>
-      <p>Проект разработан для любителей истории и военной техники. Мы собрали подробную информацию о вооружении, чтобы сделать процесс изучения увлекательным и познавательным.</p>
-    </section>
-  </main>
+        <!-- Фото-галерея -->
+        <section class="section gallery-section">
+            <h2>Фотоархив</h2>
+            <div class="gallery-grid">
+                <img src="img/photos/1.jpg" alt="Техника 1" class="gallery-item">
+                <img src="img/photos/2.jpg" alt="Техника 2" class="gallery-item">
+                <img src="img/photos/3.jpg" alt="Техника 3" class="gallery-item">
+            </div>
+        </section>
 
-  <footer>
-    <p>© 2025 Энциклопедия войны. Все права защищены.</p>
-  </footer>
+                <div class="custom-slider">
+                    <div class="slider-track">
+                      <div class="slide active">
+                        <img src="img\slider/1.png" alt="Историческое фото 1">
+                      </div>
+                      <div class="slide">
+                        <img src="img\slider/2.png" alt="Историческое фото 2">
+                      </div>
+                      <div class="slide">
+                        <img src="img\slider/3.png" alt="Историческое фото 3">
+                      </div>
+                      <div class="slide">
+                        <img src="img\slider/4.png" alt="Историческое фото 3">
+                      </div>
+                    </div>
+                  </div>
+                  <section id="pre-ww1" class="era-section">
+                    <div class="era-content">
+                      <h2>До Первой Мировой войны (1900-1914)</h2>
+                      <div class="era-info">
+                        <div class="era-text">
+                          <p>Эпоха расцвета европейских империй, технического прогресса и культурного развития. Основные характеристики периода:</p>
+                          <ul>
+                            <li>Бурное развитие промышленности</li>
+                            <li>Создание первых автомобилей и самолётов</li>
+                            <li>Расцвет модерна в архитектуре</li>
+                            <li>Формирование системы международных союзов</li>
+                          </ul>
+                        </div>
+                        <div class="era-photo">
+                          <img src="img\periods/1.jpg" alt="Европейский город начала XX века">
+                          <p class="photo-caption">Россия, 1812 год. деревня Бородино</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  
+                  <section id="ww1" class="era-section">
+                    <div class="era-content">
+                      <h2>Первая Мировая война (1914-1918)</h2>
+                      <div class="era-info">
+                        <div class="era-text">
+                          <p>Великая война, перекроившая карту мира:</p>
+                          <ul>
+                            <li>Использование новых видов оружия</li>
+                            <li>Окопная война и химические атаки</li>
+                            <li>Распад четырёх империй</li>
+                            <li>Революционные изменения в обществе</li>
+                          </ul>
+                        </div>
+                        <div class="era-photo">
+                          <img src="img\periods/2.jpeg" alt="Солдаты в окопах">
+                          <p class="photo-caption">Западный фронт, 1916 год</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  
+                  <section id="ww2" class="era-section">
+                    <div class="era-content">
+                      <h2>Вторая Мировая война (1939-1945)</h2>
+                      <div class="era-info">
+                        <div class="era-text">
+                          <p>Самая масштабная война в истории человечества:</p>
+                          <ul>
+                            <li>Глобальный характер боевых действий</li>
+                            <li>Использование ядерного оружия</li>
+                            <li>Холокост и военные преступления</li>
+                            <li>Формирование новой системы международных отношений</li>
+                          </ul>
+                        </div>
+                        <div class="era-photo">
+                          <img src="img\periods/3.jpg" alt="Советские солдаты водружают знамя над Рейхстагом">
+                          <p class="photo-caption">Берлин, май 1945 года</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  
+                  <section id="modern" class="era-section">
+                    <div class="era-content">
+                      <h2>Современность (1945-наши дни)</h2>
+                      <div class="era-info">
+                        <div class="era-text">
+                          <p>Эпоха глобализации и технологической революции:</p>
+                          <ul>
+                            <li>Холодная война и распад СССР</li>
+                            <li>Цифровая революция</li>
+                            <li>Глобальные экологические проблемы</li>
+                            <li>Новые вызовы международной безопасности</li>
+                          </ul>
+                        </div>
+                        <div class="era-photo">
+                          <img src="img\periods/4.jpeg" alt="Современный мегаполис">
+                          <p class="photo-caption">Бахмут, 2023 год</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+    </main>
 
-  <script src="script.js"></script>
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 Исторический архив военной техники</p>
+            <nav class="footer-nav">
+                <a href="#">Контакты</a>
+                <a href="#">Партнеры</a>
+                <a href="#">Документы</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+class CustomSlider {
+  constructor() {
+    this.slides = document.querySelectorAll('.slide');
+    this.slider = document.querySelector('.custom-slider');
+    this.currentIndex = 0;
+    this.interval = 6000; // 3 секунды
+    this.init();
+  }
+
+  init() {
+    this.showSlide(this.currentIndex);
+    this.startAutoPlay();
+  }
+
+  showSlide(index) {
+    // Запуск анимации белого фона
+    this.slider.classList.add('animate');
+    
+    this.slides.forEach(slide => slide.classList.remove('active'));
+    this.slides[index].classList.add('active');
+    
+    // Удаление класса анимации после завершения
+    setTimeout(() => {
+      this.slider.classList.remove('animate');
+    }, 1000);
+  }
+
+  nextSlide() {
+    this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+    this.showSlide(this.currentIndex);
+  }
+
+  startAutoPlay() {
+    setInterval(() => this.nextSlide(), this.interval);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  new CustomSlider();
+});
+    </script>
+    <script>
+        // Обновленный скрипт
+        document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.emoji-card').forEach(card => {
+            observer.observe(card);
+        });
+        });
+    </script>
+    <script>
+        // Анимация появления
+const missionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.mission-card').forEach(card => {
+  card.style.opacity = 0;
+  card.style.transform = 'translateY(30px)';
+  card.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+  missionObserver.observe(card);
+});
+    </script>
 </body>
 </html>
