@@ -32,6 +32,12 @@ nav {
     margin: 0 auto;
 }
 
+.silka {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+
 .nav-button {
     background: rgba(255, 255, 255, 0.1);
     color: white;
