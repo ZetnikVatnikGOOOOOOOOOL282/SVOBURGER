@@ -165,42 +165,51 @@
 </section>
 
         <!-- Слайдер классификации -->
-        <section id="types">  
-            <h2>Классификация по типу техники</h2>
+        <section id="types">
+            <h2 class="specs-heading">Характереристики всех видов техники</h2>
             <div class="slider-container">
                 <button class="slider-btn prev-btn">‹</button>
+                
                 <div class="slider-wrapper">
                     <div class="slider">
-                        <div class="slider-item">
-                            <a href="tanks2.html">
+                        <!-- Слайд 1 -->
+                        <div class="slider-item active">
+                            <a href="tanks.html">
                                 <img src="img/slider/tank.png" alt="Танки">
-                                <h3>Танки</h3>
-                                <p>Описание танков Второй мировой войны.</p>
+                                <h3 class="vehicle-title">Танки</h3>
+                                <p class="vehicle-description">Описание танков Второй мировой войны.</p>
                             </a>
                         </div>
+        
+                        <!-- Слайд 2 -->
                         <div class="slider-item">
                             <a href="planes.html">
-                                <img src="img/slider/plane.png" alt="Самолеты">
-                                <h3>Самолеты</h3>
-                                <p>Описание самолетов Второй мировой войны.</p>
+                                <img src="img/slider/plane.png"Самолеты">
+                                <h3 class="vehicle-title">Самолеты</h3>
+                                <p class="vehicle-description">Описание самолетов Второй мировой войны.</p>
                             </a>
                         </div>
+        
+                        <!-- Слайд 3 -->
                         <div class="slider-item">
                             <a href="ships.html">
                                 <img src="img/slider/sheep.png" alt="Корабли">
-                                <h3>Корабли</h3>
-                                <p>Описание кораблей Второй мировой войны.</p>
+                                <h3 class="vehicle-title">Корабли</h3>
+                                <p class="vehicle-description">Описание кораблей Второй мировой войны.</p>
                             </a>
                         </div>
+        
+                        <!-- Слайд 4 -->
                         <div class="slider-item">
                             <a href="artillery.html">
                                 <img src="img/slider/gun1.png" alt="Орудия">
-                                <h3>Орудия</h3>
-                                <p>Описание артиллерийских орудий Второй мировой войны.</p>
+                                <h3 class="vehicle-title">Орудия и остальная техника</h3>
+                                <p class="vehicle-description">Описание артиллерийских орудий и остальной техники Второй мировой войны.</p>
                             </a>
                         </div>
                     </div>
                 </div>
+        
                 <button class="slider-btn next-btn">›</button>
             </div>
         </section>
@@ -241,59 +250,61 @@
 
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-        const slider = document.querySelector('.slider');
-        const items = document.querySelectorAll('.slider-item');
-        const prevBtn = document.querySelector('.prev-btn');
-        const nextBtn = document.querySelector('.next-btn');
-        let currentIndex = 0;
-        let autoSlideInterval;
+document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.slider-item');
+    let currentSlide = 0;
+    let autoSlideInterval;
 
-        function updateSlider() {
-            const itemWidth = items[0].offsetWidth;
-            slider.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % items.length;
-            updateSlider();
-        }
-
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-            updateSlider();
-        }
-
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(nextSlide, 5000);
-        }
-
-        function stopAutoSlide() {
-            clearInterval(autoSlideInterval);
-        }
-
-        prevBtn.addEventListener('click', () => {
-            stopAutoSlide();
-            prevSlide();
-            startAutoSlide();
+    function showSlide(index) {
+        // Скрываем все слайды
+        slides.forEach(slide => {
+            slide.classList.remove('active', 'prev');
         });
 
-        nextBtn.addEventListener('click', () => {
-            stopAutoSlide();
-            nextSlide();
-            startAutoSlide();
-        });
+        // Показываем текущий слайд
+        slides[index].classList.add('active');
 
-        // Запуск автопрокрутки
+        // Добавляем класс для предыдущего слайда
+        const prevIndex = (index - 1 + slides.length) % slides.length;
+        slides[prevIndex].classList.add('prev');
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Автоматическое переключение
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 3000);
+    }
+
+    // Обработчики кнопок
+    document.querySelector('.next-btn').addEventListener('click', () => {
+        clearInterval(autoSlideInterval);
+        nextSlide();
         startAutoSlide();
-
-        // Остановка при наведении
-        slider.addEventListener('mouseenter', stopAutoSlide);
-        slider.addEventListener('mouseleave', startAutoSlide);
-
-        // Адаптация при изменении размера окна
-        window.addEventListener('resize', updateSlider);
     });
+
+    document.querySelector('.prev-btn').addEventListener('click', () => {
+        clearInterval(autoSlideInterval);
+        prevSlide();
+        startAutoSlide();
+    });
+
+    // Запускаем автоматическое переключение
+    startAutoSlide();
+
+    // Пауза при наведении
+    const slider = document.querySelector('.slider');
+    slider.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+    slider.addEventListener('mouseleave', startAutoSlide);
+});
     </script>
 </body>
 </html>

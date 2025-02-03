@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    background: linear-gradient(135deg, #0d47a1 0%, #1a237e 100%);
+    background: linear-gradient(135deg, #2c3e50 0%, #2c3e50 100%);
     padding: 2rem 1rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     min-height: 120px;
@@ -91,9 +91,9 @@ nav {
 }
 
 .filter-button.active-filter {
-    background: #0d47a1;
+    background: #e74c3c;
     color: white;
-    border-color: #0d47a1;
+    border-color: #e74c3c;
     box-shadow: 0 4px 15px rgba(13, 71, 161, 0.3);
 }
 
@@ -159,7 +159,7 @@ nav {
     color: #2c3e50;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #0d47a1;
+    border-bottom: 2px solid #e93b27;
     font-size: 1.5rem;
 }
 
@@ -348,7 +348,7 @@ footer {
 
     .auth-input:focus {
         outline: none;
-        border-color: #0d47a1;
+        border-color: #e74c3c;
         box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.1);
     }
 
@@ -363,13 +363,13 @@ footer {
     }
 
     #signin-button {
-        background: #0d47a1;
+        background: #e74c3c;
         color: white;
         margin-top: 1rem;
     }
 
     #signin-button:hover {
-        background: #1a237e;
+        background: #a1362a;
         transform: translateY(-2px);
     }
 
@@ -411,7 +411,7 @@ footer {
 
     /* Заголовок админ-панели */
     .admin-panel-header {
-        background: linear-gradient(135deg, #0d47a1 0%, #1a237e 100%);
+        background: linear-gradient(135deg, #e74c3c 0%, #a33428 100%);
         padding: 1.5rem;
         display: flex;
         justify-content: space-between;
@@ -457,7 +457,7 @@ footer {
 
     .admin-menu-link.active {
         background: #0d47a11a;
-        color: #0d47a1;
+        color: #a33428;
     }
 
     .admin-menu-link i {
@@ -478,7 +478,7 @@ footer {
         display: inline-block;
         width: 6px;
         height: 6px;
-        background: #0d47a1;
+        background: #e74c3c;
         border-radius: 50%;
         margin-right: 15px;
         opacity: 0;
@@ -542,7 +542,7 @@ footer {
         #tank-form select:focus,
         #tank-form textarea:focus {
             outline: none;
-            border-color: #0d47a1;
+            border-color: #e75e3c;
             box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.1);
         }
     
@@ -564,7 +564,7 @@ footer {
     
         /* Стилизация кнопки отправки */
         #tank-form button[type="submit"] {
-            background: #0d47a1;
+            background: #a33428;
             color: white;
             padding: 16px 32px;
             border: none;
@@ -581,7 +581,7 @@ footer {
         }
     
         #tank-form button[type="submit"]:hover {
-            background: #1a237e;
+            background: #722017;
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(13, 71, 161, 0.3);
         }
@@ -784,17 +784,6 @@ footer {
     }
 
 
-    .detail-item::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background: #0d47a1;
-        border-radius: 3px 0 0 3px;
-    }
-
     /* Анимация для иконки ссылки */
     .tank-link::after {
         content: '↗';
@@ -802,7 +791,7 @@ footer {
         top: 1rem;
         right: 1rem;
         opacity: 0;
-        color: #0d47a1;
+        color: #ff1900;
         font-weight: 700;
         transition: opacity 0.3s ease;
     }
@@ -851,7 +840,7 @@ footer {
         width: 300px;
         left: -40px;
         right: 0;
-        background: #0d47a1;
+        background: #e74c3c;
         color: white;
         padding: 1.2rem;
         border-radius: 8px;
@@ -878,7 +867,7 @@ footer {
         margin-left: -10px;
         border-width: 10px;
         border-style: solid;
-        border-color: #0d47a1 transparent transparent transparent;
+        border-color: #e74c3c transparent transparent transparent;
     }
 
     /* Сетка характеристик */
