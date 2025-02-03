@@ -15,7 +15,7 @@
             <nav class="era-nav">
                 <a href="index.html" class="era-btn">Главная</a>
                 <a href="#countries" class="era-btn">Страны</a>
-                <a href="#tech" class="era-btn">Типы техники</a>
+                <a href="#types" class="era-btn">Типы техники</a>
                 <a href="#about" class="era-btn">О проекте</a>
             </nav>
         </div>
@@ -165,20 +165,49 @@
 </section>
 
         <!-- Слайдер классификации -->
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">Контент 1</div>
-              <div class="swiper-slide">Контент 2</div>
+        <section id="types">  
+            <h2>Классификация по типу техники</h2>
+            <div class="slider-container">
+                <button class="slider-btn prev-btn">‹</button>
+                <div class="slider-wrapper">
+                    <div class="slider">
+                        <div class="slider-item">
+                            <a href="tanks2.html">
+                                <img src="img/slider/tank.png" alt="Танки">
+                                <h3>Танки</h3>
+                                <p>Описание танков Второй мировой войны.</p>
+                            </a>
+                        </div>
+                        <div class="slider-item">
+                            <a href="planes.html">
+                                <img src="img/slider/plane.png" alt="Самолеты">
+                                <h3>Самолеты</h3>
+                                <p>Описание самолетов Второй мировой войны.</p>
+                            </a>
+                        </div>
+                        <div class="slider-item">
+                            <a href="ships.html">
+                                <img src="img/slider/sheep.png" alt="Корабли">
+                                <h3>Корабли</h3>
+                                <p>Описание кораблей Второй мировой войны.</p>
+                            </a>
+                        </div>
+                        <div class="slider-item">
+                            <a href="artillery.html">
+                                <img src="img/slider/gun1.png" alt="Орудия">
+                                <h3>Орудия</h3>
+                                <p>Описание артиллерийских орудий Второй мировой войны.</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-btn next-btn">›</button>
             </div>
-            <!-- Добавьте элементы управления -->
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-          </div>
+        </section>
     </main>
 
     <!-- Футер -->
-    <footer class="footer">
+    <footer class="footer" id="about">
         <div class="footer-content">
             <div class="footer-nav">
                 <a href="#">О проекте</a>
@@ -211,21 +240,59 @@
 
 
     </script>
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const swiper = new Swiper('.swiper-container', {
-        // Настройки слайдера
-        loop: true,
-        pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        },
-        navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-        },
-    });
+        document.addEventListener('DOMContentLoaded', () => {
+        const slider = document.querySelector('.slider');
+        const items = document.querySelectorAll('.slider-item');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let currentIndex = 0;
+        let autoSlideInterval;
+
+        function updateSlider() {
+            const itemWidth = items[0].offsetWidth;
+            slider.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            updateSlider();
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        prevBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            prevSlide();
+            startAutoSlide();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            nextSlide();
+            startAutoSlide();
+        });
+
+        // Запуск автопрокрутки
+        startAutoSlide();
+
+        // Остановка при наведении
+        slider.addEventListener('mouseenter', stopAutoSlide);
+        slider.addEventListener('mouseleave', startAutoSlide);
+
+        // Адаптация при изменении размера окна
+        window.addEventListener('resize', updateSlider);
     });
     </script>
 </body>
